@@ -1,4 +1,5 @@
 from django.conf.urls import url, include
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from api.views import UserViewSet
@@ -10,5 +11,5 @@ router.register(r'quotes', QuoteViewSet)
 router.register(r'quote-votes', QuoteVoteViewSet)
 
 urlpatterns = [
-    url(r'', include(router.urls)),
+    path('', include(router.urls)),
 ]

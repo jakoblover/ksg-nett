@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.urls import path
 
 from quotes import views
 
 urlpatterns = [
-    url('(?P<quote_id>[0-9])/vote-up', views.vote_up),
-    url('^', views.list_view),
+    path('<int:quote_id>/vote-up', views.vote_up),
+    path('', views.list_view),
 ]

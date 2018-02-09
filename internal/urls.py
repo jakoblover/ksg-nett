@@ -1,8 +1,8 @@
-from django.conf.urls import url, include
+from django.urls import re_path, path, include
 
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.index),
-    url(r'^quotes/', include('quotes.urls')),
+    re_path(r'^$', views.index),
+    path('quotes/', include('quotes.urls')),
 ]
