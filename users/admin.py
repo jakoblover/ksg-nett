@@ -28,7 +28,7 @@ class MyUserAdmin(UserAdmin):
     form = MyUserChangeForm
     add_form = MyUserCreationForm
     fieldsets = UserAdmin.fieldsets + (
-        ('Personalia', {'fields': ('date_of_birth', 'study',)}),
+        ('Credentials', {'fields': ('date_of_birth', 'study', 'profile_image',)}),
         ('Contact', {'fields': ('phone', 'study_address', 'home_address',)}),
         ('KSG options', {'fields': ('commission',)}),
     )

@@ -24,7 +24,6 @@ KSG_ROLES = (
     ("hospitant", "Hospitant"),
 )
 
-
 class User(AbstractUser):
     """
     A KSG user
@@ -33,6 +32,8 @@ class User(AbstractUser):
     date_of_birth = models.DateField(blank=True, null=True)
     study = models.CharField(default="", blank=True, max_length=100)
     profile_image = models.FileField(upload_to='profiles/', null=True)
+    serious_profile_image = models.FileField(upload_to='profiles', null=True)
+    balance = models.IntegerField(editable=False, default=0)
 
     phone = models.CharField(default="", blank=True, max_length=50)
     study_address = models.CharField(default="", blank=True, max_length=100)
@@ -41,6 +42,7 @@ class User(AbstractUser):
     start_ksg = models.DateField(auto_now_add=True)
     ksg_status = models.CharField(max_length=32, choices=KSG_STATUS_TYPES, default=KSG_STATUS_TYPES[0])
     ksg_role = models.CharField(max_length=32, choices=KSG_ROLES, default=KSG_ROLES[0])
+
 
     commission = models.ForeignKey(
         Commission,
@@ -59,3 +61,36 @@ class User(AbstractUser):
     class Meta:
         default_related_name = 'users'
         verbose_name_plural = 'Users'
+
+
+
+# class Allergy(AbstractUser):
+#     """
+#     Model containing food preferences and allergies
+#
+#     """
+#
+#     # Allergens
+#     gluten = models.BooleanField(default=False)
+#     lactose = models.BooleanField(default=False)
+#     milk = models.BooleanField(default=False)
+#     nuts = models.BooleanField(default=False)
+#     shellfish = models.BooleanField(default=False)
+#     celery = models.BooleanField(default=False)
+#     soy = models.BooleanField(default=False)
+#     fish = models.BooleanField(default=False)
+#     egg = models.BooleanField(default=False)
+#
+#     # Diets
+#     vegetarian = models.BooleanField(default=False)
+#     pescitarian = models.BooleanField(default=False)
+#     vegan = models.BooleanField(default=False)
+#     not_swine = models.BooleanField(default=False)
+#
+#     class Meta:
+#         default_related_name = 'allegies'
+#         verbose_name_plural = 'Allergies'
+
+
+
+
