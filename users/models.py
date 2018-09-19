@@ -15,7 +15,7 @@ KSG_STATUS_TYPES = (
 )
 
 # Roles in the KSG hierarchy
-KSG_ROLES = (
+KSG_ROLES = (git
     ("gjengis", "Gjengis"),
     ("funk", "Funksjonær"),
     ("hangaround", "Hangaround"),
@@ -64,32 +64,39 @@ class User(AbstractUser):
 
 
 
-# class Allergy(AbstractUser):
-#     """
-#     Model containing food preferences and allergies
-#
-#     """
-#
-#     # Allergens
-#     gluten = models.BooleanField(default=False)
-#     lactose = models.BooleanField(default=False)
-#     milk = models.BooleanField(default=False)
-#     nuts = models.BooleanField(default=False)
-#     shellfish = models.BooleanField(default=False)
-#     celery = models.BooleanField(default=False)
-#     soy = models.BooleanField(default=False)
-#     fish = models.BooleanField(default=False)
-#     egg = models.BooleanField(default=False)
-#
-#     # Diets
-#     vegetarian = models.BooleanField(default=False)
-#     pescitarian = models.BooleanField(default=False)
-#     vegan = models.BooleanField(default=False)
-#     not_swine = models.BooleanField(default=False)
-#
-#     class Meta:
-#         default_related_name = 'allegies'
-#         verbose_name_plural = 'Allergies'
+class Allergy(models.Model):
+    """
+    Model containing food preferences and allergies
+
+    """
+
+    # Allergens
+    gluten = models.BooleanField(default=False)
+    lactose = models.BooleanField(default=False)
+    milk = models.BooleanField(default=False)
+    nuts = models.BooleanField(default=False)
+    shellfish = models.BooleanField(default=False)
+    celery = models.BooleanField(default=False)
+    soy = models.BooleanField(default=False)
+    fish = models.BooleanField(default=False)
+    egg = models.BooleanField(default=False)
+
+    # Diets
+    vegetarian = models.BooleanField(default=False)
+    pescitarian = models.BooleanField(default=False)
+    vegan = models.BooleanField(default=False)
+    not_swine = models.BooleanField(default=False)
+
+    def __str__(self):
+        return ""
+
+    def __repr__(self):
+        return ""
+
+
+    class Meta:
+        default_related_name = 'allegies'
+        verbose_name_plural = 'Allergies'
 
 
 
