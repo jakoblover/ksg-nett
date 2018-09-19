@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.utils.translation import ugettext_lazy as _
 
 from users.models import User
+from users.models import Allergy
 
 
 class MyUserChangeForm(UserChangeForm):
@@ -24,13 +25,18 @@ class MyUserCreationForm(UserCreationForm):
         fields = ('username', 'email',)
 
 
+class Allergens(admin.TabularInline):
+    model = Allergy
+
+
 class MyUserAdmin(UserAdmin):
     form = MyUserChangeForm
     add_form = MyUserCreationForm
     fieldsets = UserAdmin.fieldsets + (
-        ('Credentials', {'fields': ('date_of_birth', 'study', 'profile_image',)}),
+        ('Credentials', {'fields': ('date_of_birth', 'study', 'profile_image', 'serious_profile_image',)}),
         ('Contact', {'fields': ('phone', 'study_address', 'home_address',)}),
         ('KSG options', {'fields': ('commission',)}),
+        ('Additional info', {'fields': ('in_relationship',)}),
     )
     add_fieldsets = (
         (None, {
@@ -39,5 +45,8 @@ class MyUserAdmin(UserAdmin):
         }),
     )
 
+    inlines = [Allergens]
+
 
 admin.site.register(User, MyUserAdmin)
+admin.site.register(Allergy)

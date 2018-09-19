@@ -15,7 +15,7 @@ KSG_STATUS_TYPES = (
 )
 
 # Roles in the KSG hierarchy
-KSG_ROLES = (git
+KSG_ROLES = (
     ("gjengis", "Gjengis"),
     ("funk", "Funksjonær"),
     ("hangaround", "Hangaround"),
@@ -24,6 +24,8 @@ KSG_ROLES = (git
     ("hospitant", "Hospitant"),
 )
 
+
+
 class User(AbstractUser):
     """
     A KSG user
@@ -31,9 +33,10 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     date_of_birth = models.DateField(blank=True, null=True)
     study = models.CharField(default="", blank=True, max_length=100)
-    profile_image = models.FileField(upload_to='profiles/', null=True)
-    serious_profile_image = models.FileField(upload_to='profiles', null=True)
+    profile_image = models.FileField(upload_to='profiles/', null=True, blank=True)
+    serious_profile_image = models.FileField(upload_to='profiles', null=True, blank=True)
     balance = models.IntegerField(editable=False, default=0)
+    in_relationship = models.BooleanField(default=False)
 
     phone = models.CharField(default="", blank=True, max_length=50)
     study_address = models.CharField(default="", blank=True, max_length=100)
@@ -69,6 +72,7 @@ class Allergy(models.Model):
     Model containing food preferences and allergies
 
     """
+    user = models.OneToOneField(to='User', default=None)
 
     # Allergens
     gluten = models.BooleanField(default=False)
